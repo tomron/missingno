@@ -96,12 +96,10 @@ def matrix(
             ts_array = pd.date_range(df.index.to_timestamp().date[0],
                                      df.index.to_timestamp().date[-1],
                                      freq=freq).values
-
             ts_ticks = pd.date_range(df.index.to_timestamp().date[0],
                                      df.index.to_timestamp().date[-1],
                                      freq=freq).map(lambda t:
                                                     t.strftime('%Y-%m-%d'))
-
         elif type(df.index) == pd.DatetimeIndex:
             ts_array = pd.date_range(df.index[0], df.index[-1],
                                      freq=freq).values
@@ -334,7 +332,9 @@ def bar(
 
 def heatmap(
     df, filter=None, n=0, p=0, sort=None, figsize=(20, 12), fontsize=16, labels=True,
-    label_rotation=45, cmap='RdBu', vmin=-1, vmax=1, cbar=True, ax=None
+    label_rotation=45, cmap='RdBu', vmin=-1, vmax=1, cbar=True,
+    heatmap_args=dict(),
+    ax=None
 ):
     """
     Presents a `seaborn` heatmap visualization of nullity correlation in the given DataFrame.
@@ -356,6 +356,7 @@ def heatmap(
     :param cmap: What `matplotlib` colormap to use. Defaults to `RdBu`.
     :param vmin: The normalized colormap threshold. Defaults to -1, e.g. the bottom of the color scale.
     :param vmax: The normalized colormap threshold. Defaults to 1, e.g. the bottom of the color scale.
+    :param heatmap_args: additional args to pass to `sns.heatmap` constructor.
     :return: The plot axis.
     """
     # Apply filters and sorts, set up the figure.
@@ -379,10 +380,10 @@ def heatmap(
     if labels:
         sns.heatmap(corr_mat, mask=mask, cmap=cmap, ax=ax0, cbar=cbar,
                     annot=True, annot_kws={'size': fontsize - 2},
-                    vmin=vmin, vmax=vmax)
+                    vmin=vmin, vmax=vmax, **heatmap_args)
     else:
         sns.heatmap(corr_mat, mask=mask, cmap=cmap, ax=ax0, cbar=cbar,
-                    vmin=vmin, vmax=vmax)
+                    vmin=vmin, vmax=vmax, **heatmap_args)
 
     # Apply visual corrections and modifications.
     ax0.xaxis.tick_bottom()

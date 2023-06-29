@@ -100,6 +100,10 @@ class TestHeatmap(unittest.TestCase):
         msno.heatmap(self.simple_df, cmap='viridis')
         return plt.gcf()
 
+    @pytest.mark.mpl_image_compare
+    def test_extra_args_heatmap(self):
+        msno.heatmap(self.simple_df, heatmap_args=dict(linecolor='black', linewidths=1))
+        return plt.gcf()
 
 class TestDendrogram(unittest.TestCase):
     def setUp(self):
