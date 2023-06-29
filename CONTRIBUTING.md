@@ -27,10 +27,10 @@ In addition to the `missingno` prerequisites, you will also need to have the `ge
 
 Tests are split between visualization tests for core package methods and utility tests for helper functions.
 
-The visualization tests are under `tests/viz_tests.py`, and rely on `pytest` and the [`pytest-mpl`](https://github.com/matplotlib/pytest-mpl) plugin. Before running the tests, generate the set of baseline images with `py.test --mpl-generate-path=baseline viz_tests.py`. You will want to inspect the images you generate in order to ascertain that they look correct. If you are satisfied that they are, you can rerun the test at anytime by calling `py.test --mpl viz_tests.py`. For more information on how this
+The visualization tests are under `tests/test_viz.py`, and rely on `pytest` and the [`pytest-mpl`](https://github.com/matplotlib/pytest-mpl) plugin. Before running the tests, generate the set of baseline images with `py.test --mpl-generate-path=baseline test_viz.py`. You will want to inspect the images you generate in order to ascertain that they look correct. If you are satisfied that they are, you can rerun the test at anytime by calling `py.test --mpl test_viz.py`. For more information on how this
 works, refer to the [pytest-mpl README](https://github.com/matplotlib/pytest-mpl).
 
-The utility tests are located under `tests/util_tests.py`. These are not visualization tests, and so can be run with `pytest util_tests.py`.
+The utility tests are located under `tests/test_util.py`. These are not visualization tests, and so can be run with `pytest test_util.py`.
 
 ### Data
 
